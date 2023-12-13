@@ -14,6 +14,8 @@ const appHeaders: ArgusAppHeaders = {
 };
 
 const StyledTableWrapper = styled.div`
+  min-width:500px;
+  max-width: 1000px;
   overflow-x: auto;
   position: relative;
 `;
@@ -64,7 +66,6 @@ export const TableFeature: FC = () => {
                 position: isSticky ? 'fixed' : 'absolute',
                 top: 0,
                 width: '100%',
-                maxWidth: '1000px',
                 zIndex: "1",
                 backgroundColor: 'white'
             }}>
