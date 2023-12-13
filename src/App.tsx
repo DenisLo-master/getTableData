@@ -1,22 +1,21 @@
-import { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import { TableFeature } from './components'
 
-const GlobalStyle = createGlobalStyle`
-  :root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
-    color: black; /* черный цвет текста */
-    background-color: #cb2020; /* белый цвет фона */
-  }
+const StyledTableWrapper = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  flex-direction: column;
 `;
 
 function App() {
   return (
     <>
-      <GlobalStyle />
       <div>
-        <TableFeature />
+        <StyledTableWrapper>
+          <h1>Список продукции</h1>
+          <TableFeature />
+        </StyledTableWrapper>
       </div>
     </>
   )

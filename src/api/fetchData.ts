@@ -1,4 +1,4 @@
-import { ArgusAppHeaders, ArgusSearchParams } from "../types";
+import { ArgusAppHeaders, ArgusSearchParams, ITableProps } from "../types";
 
 export async function fetchData(params: ArgusSearchParams, headers: ArgusAppHeaders): Promise<any> {
     const { limit, search } = params;
@@ -10,7 +10,6 @@ export async function fetchData(params: ArgusSearchParams, headers: ArgusAppHead
     });
 
     const urlWithParams = `${apiUrl}?${queryParams.toString()}`;
-    console.log("Request URL:", urlWithParams);
     try {
         const response = await fetch(urlWithParams, {
             method: "GET",
@@ -24,10 +23,15 @@ export async function fetchData(params: ArgusSearchParams, headers: ArgusAppHead
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
+
+
         const data = await response.json();
-        return data;
+        const result: ITableProps[] = Object.values(data.items)
+        if (!Array.isArray(result) || !result.every((item: ITableProps) => typeof item === 'object')) {
+            throw new Error('Ошибка: некорректный формат полученных данных от сервера');
+        }
+        return result;
     } catch (error) {
-        console.error("Error fetching data:", error);
         throw error;
     }
 }
