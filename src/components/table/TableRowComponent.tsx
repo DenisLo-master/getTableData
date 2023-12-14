@@ -67,7 +67,7 @@ export const TableRowComponent: FC<ITable> = ({ tableData, setSticky }) => {
                     ))}
                 </tbody>
             </StyledTable> :
-            <StyledP>не соответствующих данных</StyledP>
+            <StyledP>нет соответствующих данных</StyledP>
     );
 };
 

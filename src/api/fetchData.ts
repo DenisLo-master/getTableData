@@ -1,11 +1,17 @@
 import { ArgusAppHeaders, ArgusSearchParams, ITableProps } from "../types";
 
-export async function fetchData(params: ArgusSearchParams, headers: ArgusAppHeaders): Promise<any> {
-    const { limit, search } = params;
+const headers: ArgusAppHeaders = {
+    "Argus-App-Type": "food",
+    "Argus-Auth-Token": "teNSmM0i0Pz2Wph_-7nSYg",
+    "Argus-School-Id": "587",
+};
+
+export async function fetchData(params: ArgusSearchParams): Promise<any> {
+    const { search } = params;
     const apiUrl = "https://api0.sms-dnevnik.com/rest/food/items";
 
     const queryParams = new URLSearchParams({
-        limit,
+        limit: '100',
         search,
     });
 

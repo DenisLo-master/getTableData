@@ -1,5 +1,4 @@
 export interface ArgusSearchParams {
-    limit: string;
     search: string;
 }
 
