@@ -19,7 +19,10 @@ const ErrorMessage = styled.p`
 `;
 
 export const TableFeature: FC = () => {
-    const [isSticky, setSticky] = useState(false);
+    const [params, setParams] = useState({
+        isSticky: false,
+        width: 10
+    });
     const [rowData, setRowData] = useState<ITableProps[] | null>(null)
     const [searchValue, setSearch] = useState<string>('');
     const [debouncedValue, setDebouncedValue] = useState<string>('');
@@ -55,9 +58,9 @@ export const TableFeature: FC = () => {
     return (
         <StyledTableWrapper>
             <div style={{
-                position: isSticky ? 'fixed' : 'absolute',
+                position: params.isSticky ? 'fixed' : 'absolute',
                 top: 0,
-                width: '100%',
+                width: params.width,
                 minWidth: '500px',
                 maxWidth: '1000px',
                 zIndex: "1",
@@ -66,7 +69,7 @@ export const TableFeature: FC = () => {
                 <SearchRowComponent setSearch={setSearch} />
                 <TableHeaderComponent />
             </div>
-            {rowData !== null && <TableRowComponent tableData={rowData} setSticky={setSticky} />}
+            {rowData !== null && <TableRowComponent tableData={rowData} setParams={setParams} />}
             {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         </StyledTableWrapper >
     )

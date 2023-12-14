@@ -1,10 +1,10 @@
 import { FC, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { ITableProps } from '../../types';
+import { ITableParams, ITableProps } from '../../types';
 
 interface ITable {
     tableData: ITableProps[]
-    setSticky: (value: boolean) => void
+    setParams: (params: ITableParams) => void
 }
 
 const HeaderHeight = 80
@@ -33,19 +33,26 @@ const StyledP = styled.p`
 `;
 
 
-export const TableRowComponent: FC<ITable> = ({ tableData, setSticky }) => {
+export const TableRowComponent: FC<ITable> = ({ tableData, setParams }) => {
     const tableRef = useRef<HTMLTableElement>(null);
 
     const handleScroll = () => {
         if (tableRef.current) {
             const offset = tableRef.current.getBoundingClientRect().top;
-            setSticky(offset <= HeaderHeight);
+            const width = tableRef.current.getBoundingClientRect().width;
+            setParams({
+                isSticky: offset <= HeaderHeight,
+                width
+            });
         }
     };
 
     useEffect(() => {
+        handleScroll()
+        window.addEventListener('resize', handleScroll);
         window.addEventListener('scroll', handleScroll);
         return () => {
+            window.removeEventListener('resize', handleScroll);
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);

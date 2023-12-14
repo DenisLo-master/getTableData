@@ -2,13 +2,13 @@ import { ChangeEvent, FC, useState } from 'react'
 import styled from 'styled-components';
 
 const SearchRow = styled.div`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #fff;
   border-bottom: 1px solid #ddd;
-  z-index: 1;
+  /* z-index: 1; */
 `;
 
 interface ISearchRowComponent {

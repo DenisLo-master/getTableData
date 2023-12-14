@@ -7,3 +7,8 @@ export interface ITableProps {
     saleType: string;
     title: string;
 }
+
+export interface ITableParams {
+    isSticky: boolean;
+    width: number
+}

@@ -1,6 +1,13 @@
 import { FC } from 'react'
 import styled from 'styled-components';
 
+const StyledTable = styled.table`
+  position: relative;
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+`;
+
 const StyledTh = styled.th`
   padding: 10px;
   text-align: left;
@@ -8,14 +15,6 @@ const StyledTh = styled.th`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-`;
-
-
-
-const StyledTable = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: fixed;
 `;
 
 
